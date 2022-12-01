@@ -218,7 +218,7 @@
           </ul>
         </li>
         <li>
-          <a href="./doctors.html">
+          <a href="{{ route('doctors') }}">
             <span>
               Doctors
             </span>
@@ -267,7 +267,7 @@
           </a>
         </li>
         <li>
-          <a href="./new-branch.html">
+          <a href="{{ route('front.delma') }}">
             <span>
               DELMA Branch
             </span>
@@ -350,7 +350,7 @@
               </a>
             </li>
             <li class="hover-li">
-              <a href="services.html" class="hover-a">
+              <a href="{{ route('front.services') }}" class="hover-a">
                 <i class="linearicons-chevron-down"></i>
                 <span>
                   Services
@@ -612,14 +612,14 @@
               </ul>
             </li>
             <li>
-              <a href="./about.html">
+              <a href="{{ route('front.about') }}">
                 <span>
                   About Us
                 </span>
               </a>
             </li>
             <li>
-              <a href="./doctors.html">
+              <a href="{{ route('doctors') }}">
                 <span>
                   Doctors
                 </span>
@@ -668,7 +668,7 @@
               </a>
             </li>
             <li>
-              <a href="./new-branch.html">
+              <a href="{{ route('front.delma') }}">
                 <span>
                   DELMA Branch
                 </span>

@@ -1,122 +1,64 @@
-
 @extends('front.layout.front')
 @section('content')
-  <!-- news events page -->
-  <div class="news-events-page">
-    <!-- start latest news section -->
-    <!-- blogs section -->
-    <div class="blogs-section">
-      <div class="container">
 
-        <div class="section-heading">
-          <p>
-            Lates News
-          </p>
+  <!-- start doctor profile page -->
+  <div class="doctor-profile-page">
+    <div class="container">
+      <div class="doctor-img-contacts">
+        <div class="img-div">
+          <img src="{{ URL::asset('./doctors/' . $doctor->image) }}" alt="img">
         </div>
-      </div>
-      <div class="section-body">
-        <div class="container">
-          <div class="section-body">
-            <ul class="main-section-ul">
-              @foreach($news as $new)
-              <li class="news-li" data-aos="zoom-in" data-aos-duration="1500">
-                <a class="news-a" href="{{route('news_show',$new->id)}}">
-                  <div class="news-img">
-                    <img src="{{ URL::asset('./news/' . $new->image) }}" alt="img">
-                  </div>
-                  <div class="news-body">
-                    <div class="news-heading-date">
-                      <div class="heading">
-                        <p>
-                          {{$new->name_en}}
-                        </p>
-                      </div>
-                      <div class="date">
-                        <i class="ion-ios-calendar-outline"></i>
-                        <span>
-                         {{ date('d/m', strtotime($new->date))}}
-                        </span>
-                      </div>
-                    </div>
-                    <div class="news-text">
-                      <p>
-                        <?php echo $new->titel_en ?>
-                      </p>
-                    </div>
-                  </div>
-                </a>
-               
-              </li>
-              @endforeach
-            </ul>
+        <div class="doctor-contacts">
+          <div class="doctor-name">
+            <p>
+              {{ $doctor->name_en}}
+            </p>
           </div>
-        </div>
-      </div>
-    </div>
-    <!-- blogs section -->
-
-    <!-- start upcoming events section -->
-    <div class="upcoming-events-section">
-      <div class="container">
-        <div class="section-heading">
-          <p>
-            Upcoming Events
-          </p>
-        </div>
-        <div class="section-body">
-          <ul class="main-section-ul">
-            @foreach($events as $event)
-            <li data-aos="zoom-in" data-aos-duration="1500">
-              <a href=" {{ route('event_show',$event->id) }}">
-                <div class="event-img">
-                  <img src="{{ URL::asset('./news/' . $event->image) }}" alt="">
-                </div>
-                <div class="event-body">
-                  <div class="event-heading">
-                    <p>
-                      {{$event->name_en}}
-                    </p>
-                  </div>
-                  <div class="event-details">
-                    <div class="speakers">
-                      <div class="heading">
-                        <i class="ion-android-microphone"></i>
-                        <p>
-                          Speakers
-                        </p>
-                      </div>
-                      <ul>
-                        <li>
-                          <i class="ion-android-checkmark-circle"></i>
-                          <span>
-                          {{$event->Speakers}}
-                          </span>
-                        </li>
-                       
-                      </ul>
-                    </div>
-                    <div class="text">
-                      <p>
-                     <?= $event->discription_en ?> 
-                      </p>
-                    </div>
-                  </div>
-                </div>
+          <div class="job-description">
+            <p>
+              {{ $doctor->service->name_en }}
+            </p>
+          </div>
+          <div class="phone-number">
+            <i class="linearicons-phone-plus"></i>
+            <span>
+             {{ $doctor->phone }}
+            </span>
+          </div>
+          <ul class="social-ul">
+            <li>
+              <a href="{{ $doctor->facebook }}">
+                <i class="ion-social-facebook-outline"></i>
               </a>
             </li>
-          @endforeach
+            <li>
+              <a href="{{ $doctor->twitter }}">
+                <i class="ion-social-twitter-outline"></i>
+              </a>
+            </li>
+            <li>
+              <a href="{{ $doctor->instagram }}">
+                <i class="ion-social-instagram-outline"></i>
+              </a>
+            </li>
+            <li>
+              <a href="{{ $doctor->whatsapp }}">
+                <i class="ion-social-whatsapp-outline"></i>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
+      <div class="details-section">
+        <?= $doctor->titel_en ?>
+      </div>
     </div>
-    <!-- end upcoming events section -->
   </div>
-  <!-- end upcoming events section -->
-  <!-- news events page -->
+  <!-- end doctor profile page -->
 
   <!-- start survey section -->
   <div class="survey-btn">
-    <img src="./images/icons/survey.png" alt="survey">
+    <img src="{{asset('assets/front/./images/icons/survey.png')}}" alt="survey">
     <div class="survey-text">
       <span>
         Take our survey
@@ -383,6 +325,5 @@
   </div>
   <!-- end survey modal -->
   <!-- end survey section -->
-
 
   @endsection

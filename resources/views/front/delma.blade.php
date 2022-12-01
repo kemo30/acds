@@ -1,118 +1,41 @@
-
 @extends('front.layout.front')
 @section('content')
-  <!-- news events page -->
-  <div class="news-events-page">
-    <!-- start latest news section -->
-    <!-- blogs section -->
-    <div class="blogs-section">
-      <div class="container">
-
-        <div class="section-heading">
-          <p>
-            Lates News
-          </p>
-        </div>
-      </div>
-      <div class="section-body">
-        <div class="container">
-          <div class="section-body">
-            <ul class="main-section-ul">
-              @foreach($news as $new)
-              <li class="news-li" data-aos="zoom-in" data-aos-duration="1500">
-                <a class="news-a" href="{{route('news_show',$new->id)}}">
-                  <div class="news-img">
-                    <img src="{{ URL::asset('./news/' . $new->image) }}" alt="img">
-                  </div>
-                  <div class="news-body">
-                    <div class="news-heading-date">
-                      <div class="heading">
-                        <p>
-                          {{$new->name_en}}
-                        </p>
-                      </div>
-                      <div class="date">
-                        <i class="ion-ios-calendar-outline"></i>
-                        <span>
-                         {{ date('d/m', strtotime($new->date))}}
-                        </span>
-                      </div>
-                    </div>
-                    <div class="news-text">
-                      <p>
-                        <?php echo $new->titel_en ?>
-                      </p>
-                    </div>
-                  </div>
-                </a>
-               
+  <!-- new branch page -->
+  <div class="new-branch-page">
+    <div class="page-heading">
+      <p>
+        Delma Branch
+      </p>
+    </div>
+    <div class="page-body">
+      <ul class="main-section-ul">
+        <li>
+          <div class="li-img">
+            <img src="{{ URL::asset('./delma/' . $delma->image) }}" alt="img">
+          </div>
+          <div class="li-text">
+            <div class="text-heading">
+              <p>
+                {{ $delma->name_en }}
+              </p>
+            </div>
+            <ul class="inside-ul">
+              <li>
+                <i class="linearicons-checkmark-circle"></i>
+                <p>
+                  <?= $delma->titel_en ?>
+                </p>
               </li>
-              @endforeach
+              
+              
             </ul>
           </div>
-        </div>
-      </div>
+        </li>
+       
+      </ul>
     </div>
-    <!-- blogs section -->
-
-    <!-- start upcoming events section -->
-    <div class="upcoming-events-section">
-      <div class="container">
-        <div class="section-heading">
-          <p>
-            Upcoming Events
-          </p>
-        </div>
-        <div class="section-body">
-          <ul class="main-section-ul">
-            @foreach($events as $event)
-            <li data-aos="zoom-in" data-aos-duration="1500">
-              <a href=" {{ route('event_show',$event->id) }}">
-                <div class="event-img">
-                  <img src="{{ URL::asset('./news/' . $event->image) }}" alt="">
-                </div>
-                <div class="event-body">
-                  <div class="event-heading">
-                    <p>
-                      {{$event->name_en}}
-                    </p>
-                  </div>
-                  <div class="event-details">
-                    <div class="speakers">
-                      <div class="heading">
-                        <i class="ion-android-microphone"></i>
-                        <p>
-                          Speakers
-                        </p>
-                      </div>
-                      <ul>
-                        <li>
-                          <i class="ion-android-checkmark-circle"></i>
-                          <span>
-                          {{$event->Speakers}}
-                          </span>
-                        </li>
-                       
-                      </ul>
-                    </div>
-                    <div class="text">
-                      <p>
-                     <?= $event->discription_en ?> 
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-          @endforeach
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!-- end upcoming events section -->
   </div>
-  <!-- end upcoming events section -->
-  <!-- news events page -->
+  <!-- ./new branch page -->
 
   <!-- start survey section -->
   <div class="survey-btn">
@@ -383,6 +306,4 @@
   </div>
   <!-- end survey modal -->
   <!-- end survey section -->
-
-
   @endsection

@@ -21,9 +21,14 @@ class News_EventsController extends Controller
 
     }
 
-    public function show(news $news){
+    public function show_news(news $news){
         return view("front.news-details",[
             'news' => $news,
+        ]);
+    }
+    public function show_event(event $event){
+        return view("front.event-details",[
+            'event' => $event,
         ]);
     }
 }

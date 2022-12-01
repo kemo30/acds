@@ -1,118 +1,75 @@
-
 @extends('front.layout.front')
 @section('content')
-  <!-- news events page -->
-  <div class="news-events-page">
-    <!-- start latest news section -->
-    <!-- blogs section -->
-    <div class="blogs-section">
-      <div class="container">
+    
 
-        <div class="section-heading">
-          <p>
-            Lates News
-          </p>
-        </div>
+  <!-- start services page -->
+  <div class="services-page">
+    <!-- start home servcies section -->
+    <div class="home-services-section">
+      <div class="section-heading">
+        <p>
+          Our Services
+        </p>
       </div>
       <div class="section-body">
-        <div class="container">
-          <div class="section-body">
-            <ul class="main-section-ul">
-              @foreach($news as $new)
-              <li class="news-li" data-aos="zoom-in" data-aos-duration="1500">
-                <a class="news-a" href="{{route('news_show',$new->id)}}">
-                  <div class="news-img">
-                    <img src="{{ URL::asset('./news/' . $new->image) }}" alt="img">
-                  </div>
-                  <div class="news-body">
-                    <div class="news-heading-date">
-                      <div class="heading">
-                        <p>
-                          {{$new->name_en}}
-                        </p>
-                      </div>
-                      <div class="date">
-                        <i class="ion-ios-calendar-outline"></i>
-                        <span>
-                         {{ date('d/m', strtotime($new->date))}}
-                        </span>
-                      </div>
-                    </div>
-                    <div class="news-text">
-                      <p>
-                        <?php echo $new->titel_en ?>
-                      </p>
-                    </div>
-                  </div>
-                </a>
-               
-              </li>
-              @endforeach
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- blogs section -->
-
-    <!-- start upcoming events section -->
-    <div class="upcoming-events-section">
-      <div class="container">
-        <div class="section-heading">
-          <p>
-            Upcoming Events
-          </p>
-        </div>
-        <div class="section-body">
-          <ul class="main-section-ul">
-            @foreach($events as $event)
-            <li data-aos="zoom-in" data-aos-duration="1500">
-              <a href=" {{ route('event_show',$event->id) }}">
-                <div class="event-img">
-                  <img src="{{ URL::asset('./news/' . $event->image) }}" alt="">
+        <div class="swiper-container home-services-slider">
+          <div class="swiper-wrapper">
+@forelse($services as $service)
+            <div class="swiper-slide">
+              <a href="{{ route('services_show',$service->id) }}">
+                <div class="img-div">
+                  <img src="{{ URL::asset('./services/' . $service->image) }}" alt="img">
                 </div>
-                <div class="event-body">
-                  <div class="event-heading">
+                <div class="service-text">
+                  <div class="heading">
                     <p>
-                      {{$event->name_en}}
+                     {{ $service->name_en }}
                     </p>
                   </div>
-                  <div class="event-details">
-                    <div class="speakers">
-                      <div class="heading">
-                        <i class="ion-android-microphone"></i>
-                        <p>
-                          Speakers
-                        </p>
-                      </div>
-                      <ul>
-                        <li>
-                          <i class="ion-android-checkmark-circle"></i>
-                          <span>
-                          {{$event->Speakers}}
-                          </span>
-                        </li>
-                       
-                      </ul>
-                    </div>
-                    <div class="text">
-                      <p>
-                     <?= $event->discription_en ?> 
-                      </p>
-                    </div>
+                  <div class="service-content">
+                    <ul>
+                      <li>
+                   <?= $service->titel_en ?>
+                  </ul>
+                  </div>
+                  <div class="read-more">
+                    <i class="linearicons-link"></i>
+                    <span>
+                      Read more
+                    </span>
                   </div>
                 </div>
               </a>
-            </li>
-          @endforeach
-          </ul>
+            </div>
+           
+
+           @endforeach
+          </div>
+
+          <!-- rtl code -->
+          <!-- <div class="swiper-button-prev home-services-slider-prev">
+            <span class="ion-android-arrow-forward"></span>
+          </div>
+          <div class="swiper-button-next home-services-slider-next">
+            <span class="ion-android-arrow-back"></span>
+          </div> -->
+          <!-- rtl code -->
+
+          <!-- ltr code -->
+          <div class="swiper-button-next home-services-slider-next">
+            <span class="ion-android-arrow-forward"></span>
+          </div>
+          <div class="swiper-button-prev home-services-slider-prev">
+            <span class="ion-android-arrow-back"></span>
+          </div>
+          <!-- ltr code -->
+
         </div>
       </div>
     </div>
-    <!-- end upcoming events section -->
+    <!-- end home servcies section -->
   </div>
-  <!-- end upcoming events section -->
-  <!-- news events page -->
+  <!-- end services page -->
 
   <!-- start survey section -->
   <div class="survey-btn">
