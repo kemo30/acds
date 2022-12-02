@@ -24,7 +24,7 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">front login</p>
+      <p class="login-box-msg">admin login</p>
       
 @if ($errors->any())
     <div >
@@ -40,7 +40,7 @@
     </div>
 @endif
 
-      <form method="POST" action="{{ route('login') }}">
+      <form method="POST" action="{{ route('admin.login') }}">
         @csrf
         <div class="input-group mb-3">
           <input type="email" name="email" value="{{old('email')}}" required autofocus class="form-control" placeholder="Email">

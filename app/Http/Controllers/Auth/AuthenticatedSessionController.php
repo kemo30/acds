@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
+    protected $guard = 'web';
+
+    public function __construct(Request $request)
+    {
+       if($request->is('admin/*')){
+              $this->guard = 'admin';
+       }
+    }
     /**
      * Display the login view.
      *
@@ -17,7 +25,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        return view('auth.login');
+        return view($this->guard == 'admin' ?'adminAuth.login' :'auth.login');
     }
 
     /**
@@ -28,11 +36,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        $request->authenticate();
+        $request->authenticate($this->guard);
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended(
+            $this->guard == 'admin' ? '/dashboard': RouteServiceProvider::HOME);
     }
 
     /**
@@ -43,7 +52,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
-        Auth::guard('web')->logout();
+        Auth::guard($this->guard)->logout();
 
         $request->session()->invalidate();
 

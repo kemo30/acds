@@ -19,6 +19,8 @@ use Illuminate\Routing\Route as RoutingRoute;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware(['auth:admin,web'])->group(function(){
+
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/home',[HomeController::class,'index'])->name('home');
@@ -37,10 +39,8 @@ Route::get('/servicess/{service}',[servicesController::class,'show'])->name('ser
 
 Route::get('/delmas',[delmaController::class,'test'])->name('front.delma');
 
-Route::get('/test',[
-    aboutController::class,'test'
-]);
 
 
 
+});
 require __DIR__.'/auth.php';

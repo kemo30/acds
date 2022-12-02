@@ -9,17 +9,25 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
+
+Route::group(['as' => 'admin.','prefix' => '/admin',],function(){
+    require __DIR__.'/auth.php';
+});
+
 Route::group([
 
     'prefix' => '/dashboard',
     // 'namespace' => 'Dashboard',
-    'middleware' => ['auth'],
+    'middleware' => ['auth:admin'],
 
 ],function(){
 
     Route::get('/', function () {
         return view('back.home');
     })->name('dashboard');
+
+  
+   
     
     Route::resource('services',ServiceController::class,[
        

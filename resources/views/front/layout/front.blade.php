@@ -260,6 +260,13 @@
           </a>
         </li>
         <li>
+          <a href="./contact.html">
+            <span>
+              Contact Us
+            </span>
+          </a>
+        </li>
+        <li>
           <a href="./careers.html">
             <span>
               careers
@@ -626,6 +633,15 @@
               </a>
             </li>
             <li>
+              <a href="{{ route('doctors') }}">
+                <span>
+                  @auth
+                  {{Auth::user()->name}}
+                  @endauth
+                </span>
+              </a>
+            </li>
+            <li>
               <a href="{{route('news_events')}}">
                 <span>
                   News & Events
@@ -767,6 +783,20 @@
                   </span>
                 </a>
               </li>
+              @auth
+              <li>
+                <a href="./about.html">
+                  <span>
+                    <div>
+                      <form method="post" action="/logout">
+                          @csrf
+                          <button class="btn btn-success" type="submit">Logout</button>
+                      </form>
+                      </div>
+                  </span>
+                </a>
+              </li>
+              @endauth
             </ul>
           </div>
         </div>
