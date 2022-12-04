@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\service;
 use Illuminate\Http\Request;
 use App\Traits\uplode_files;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
@@ -58,9 +60,14 @@ class ServiceController extends Controller
         $data['image']=$image;
         $data['icon'] =$icon;
         
-        service::create($data); 
+       $service= service::create($data); 
 
         session()->flash('success','service create success');
+
+        //database notification
+        $admin = Admin::Where('super_admin',1)->first();
+        $admin->notify(new \App\Notifications\NewService($service,Auth::guard('admin')->user()));
+
 
         return Redirect('dashboard/services');
     }

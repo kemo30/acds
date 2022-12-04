@@ -8,6 +8,7 @@ use App\Http\Controllers\front\HomeController;
 use App\Http\Controllers\front\News_EventsController;
 use App\Http\Controllers\front\servicesController;
 use Illuminate\Routing\Route as RoutingRoute;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,8 @@ use Illuminate\Routing\Route as RoutingRoute;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware(['auth:admin,web'])->group(function(){
+Route::middleware(['auth:web,admin'])->group( function(){
+
 
 
 Route::get('/', [HomeController::class,'index'])->name('home');
@@ -41,6 +43,6 @@ Route::get('/delmas',[delmaController::class,'test'])->name('front.delma');
 
 
 
-
 });
+
 require __DIR__.'/auth.php';
