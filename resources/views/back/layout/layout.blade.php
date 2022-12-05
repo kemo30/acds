@@ -60,7 +60,7 @@
                                         <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
                                     </h3>
                                     <p class="text-sm">{{ $value->data['body'] }}</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> {{ $value->created_at->diffForHumans() }}</p>
                                 </div>
                             </div>
                             <!-- Message End -->

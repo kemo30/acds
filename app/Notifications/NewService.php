@@ -36,7 +36,7 @@ class NewService extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database','mail'];
     }
 
     /**
@@ -46,11 +46,15 @@ class NewService extends Notification
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+    { 
+        $body = sprintf('%s Add new Service %s',
+        $this->admin->name,
+        $this->service->name_en );
+        $mail= new MailMessage;
+        $mail ->line($body)
+              ->action('Notification Action', route('services.edit',$this->service->id))
+              ->line('Thank you for using our application!');
+        return $mail;
     }
     
     /**
