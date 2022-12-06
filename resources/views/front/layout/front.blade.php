@@ -914,6 +914,10 @@
   <script src="{{asset('assets/front/./js/lightgallery.js')}}"></script>
   <script src="{{asset('assets/front/./js/lg-thumbnail.js')}}"></script>
   <script src="{{asset('assets/front/./js/index.js')}}"></script>
+  <script>
+    const userId= "{{ Auth::guard('web')->user()->id; }}";
+ </script>
+<script src="{{asset('js/app.js')}}"></script>
 </body>
 
 </html>

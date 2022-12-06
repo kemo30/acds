@@ -209,7 +209,7 @@
                 Anything you want
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+            <strong>Copyright &copy;{{ Auth::id(); }} 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
         </footer>
     </div>
     <!-- ./wrapper -->
@@ -227,6 +227,10 @@
     <script src="{{asset('assets/back/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <script src="{{asset('assets/back/plugins/summernote/summernote-bs4.min.js')}}"></script>
 <script src="{{asset('assets/back/dist/js/demo.js')}}"></script>
+<script>
+    const userId= "{{ Auth::id(); }}";
+ </script>
+<script src="{{asset('js/app.js')}}"></script>
 
    
     <script type="text/javascript">

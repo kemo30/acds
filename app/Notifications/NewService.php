@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\service;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -36,7 +37,7 @@ class NewService extends Notification
      */
     public function via($notifiable)
     {
-        return ['database','mail'];
+        return ['database','broadcast'];
     }
 
     /**
@@ -56,6 +57,30 @@ class NewService extends Notification
               ->line('Thank you for using our application!');
         return $mail;
     }
+    public function toDatabase($notifiable)
+    {
+        $body = sprintf('%s Add new Service %s',
+        $this->admin->name,
+        $this->service->name_en );
+   
+        return [
+            'titel' => 'new service add',
+            'body' => $body,
+            'url' => route('services.edit',$this->service->id),
+        ];
+    }
+
+    public function toBroadcast($notifiable)
+    {
+        $body = sprintf('%s Add new Service %s',
+        $this->admin->name,
+        $this->service->name_en );
+        return new BroadcastMessage( [
+            'titel' => 'new service add',
+            'body' => $body,
+            'url' => route('services.edit',$this->service->id),
+        ]);
+    }
     
     /**
      * Get the array representation of the notification.
@@ -66,14 +91,6 @@ class NewService extends Notification
     public function toArray($notifiable)
     {
        
-        $body = sprintf('%s Add new Service %s',
-        $this->admin->name,
-        $this->service->name_en );
-   
-        return [
-            'titel' => 'new service add',
-            'body' => $body,
-            'url' => route('services.edit',$this->service->id),
-        ];
+       
     }
 }
