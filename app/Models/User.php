@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone_number',
     ];
 
     /**
@@ -45,5 +46,9 @@ class User extends Authenticatable
 
     public function profile(){
         return $this->hasMany(profile::class,'user_id','id');
+    }
+    public function routeNotificationForVonage($notification)
+    {
+        return $this->phone_number;
     }
 }

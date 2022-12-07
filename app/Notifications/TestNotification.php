@@ -5,8 +5,12 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+
+
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\BroadcastMessage;
+use Illuminate\Notifications\Messages\NexmoMessage;
+use Illuminate\Notifications\Messages\VonageMessage;
 
 class TestNotification extends Notification
 {
@@ -30,7 +34,7 @@ class TestNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['broadcast'];
+        return ['broadcast','vonage'];
     }
 
     /**
@@ -56,6 +60,12 @@ class TestNotification extends Notification
            
         ]);
     }
+    public function toVonage($notifiable)
+{
+    return (new VonageMessage)
+                
+                ->content('Your SMS message content');
+}
 
     /**
      * Get the array representation of the notification.
